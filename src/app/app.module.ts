@@ -20,7 +20,7 @@ import { ArticulosComponent } from "./components/articulos/articulos.component";
 import { ArticulosFamiliasComponent } from "./components/articulos-familias/articulos-familias.component";
 import { ModalDialogComponent } from "./components/modal-dialog/modal-dialog.component";
 import { ServiciosComponent } from "./components/servicios/servicios.component";
-import { ServiciosService } from './services/servicios.service';
+import { ServiciosService } from "./services/servicios.service";
 
 @NgModule({
   declarations: [
@@ -49,7 +49,12 @@ import { ServiciosService } from './services/servicios.service';
   entryComponents: [ModalDialogComponent],
   providers: [
     { provide: APP_BASE_HREF, useValue: "/" },
-    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true, providers: [ServiciosService] }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyInterceptor,
+      multi: true,
+      providers: [ServiciosService]
+    }
   ],
   bootstrap: [AppComponent]
 })
