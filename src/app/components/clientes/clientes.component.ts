@@ -80,20 +80,20 @@ export class ClientesComponent implements OnInit {
     this.FormReg.markAsUntouched();
   }
 
-  // Buscar segun los filtros, establecidos en FormReg
-  // Buscar() {
-  //   this.SinBusquedasRealizadas = false;
-  //   this.clientesService
-  //     .get(
-  //       this.FormFiltro.value.Nombre,
-  //       this.FormFiltro.value.Activo,
-  //       this.Pagina
-  //     )
-  //     .subscribe((res: any) => {
-  //       this.Lista = res.Lista;
-  //       this.RegistrosTotal = res.RegistrosTotal;
-  //     });
-  // }
+  //Buscar segun los filtros, establecidos en FormReg
+  Buscar() {
+    this.SinBusquedasRealizadas = false;
+    this.clientesService
+      .get(
+        this.FormFiltro.value.Nombre,
+        this.FormFiltro.value.TieneTrabajo,
+        this.Pagina
+      )
+      .subscribe((res: any) => {
+        this.Lista = res.Lista;
+        this.RegistrosTotal = res.RegistrosTotal;
+      });
+  }
 
   // grabar tanto altas como modificaciones
   Grabar() {
