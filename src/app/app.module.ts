@@ -20,7 +20,7 @@ import { ArticulosComponent } from "./components/articulos/articulos.component";
 import { ArticulosFamiliasComponent } from "./components/articulos-familias/articulos-familias.component";
 import { ModalDialogComponent } from "./components/modal-dialog/modal-dialog.component";
 import { ClientesComponent } from "./components/clientes/clientes.component";
-import { ClientesService } from './services/clientes.service';
+import { ClientesService } from "./services/clientes.service";
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { ClientesService } from './services/clientes.service';
       { path: "inicio", component: InicioComponent },
       { path: "articulos", component: ArticulosComponent },
       { path: "articulosfamilias", component: ArticulosFamiliasComponent },
-      { path: "clientes", ClientesComponent }
+      { path: "clientes", component: ClientesComponent }
     ]),
     NgbPaginationModule,
     NgbModalModule
@@ -52,9 +52,7 @@ import { ClientesService } from './services/clientes.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MyInterceptor,
-      multi: true,
-      providers: [ServiciosService],
-      providers: [ClientesService]
+      multi: true
     }
   ],
   bootstrap: [AppComponent]
