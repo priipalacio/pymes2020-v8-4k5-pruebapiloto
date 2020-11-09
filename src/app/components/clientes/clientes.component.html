@@ -2,17 +2,35 @@
 
 <!-- Formulario Filtro de busqueda, se ve cuando la accion es Listado(busqueda/listado)-->
 <form name="FormFiltro" [formGroup]='FormFiltro' class="bg-light" *ngIf="AccionABMC == 'L'">
-	<!-- Botones -->
-	<div class="row justify-content-center">
-		<button type="button" class="btn btn-primary" (click)="Buscar()">
+	<div class="form-group row">
+		<label class="col-form-label col-sm-2 col-sm-offset-1">
+            Nombre:
+        </label>
+		<div class="col-sm-3">
+			<input type="text" name="Nombre" class="form-control" formControlName="Nombre" maxlength="55"/>
+        </div>
+			<label class="col-form-label col-sm-2  text-left">
+            Tiene Trabajo?
+        </label>
+			<div class="col-sm-3">
+				<select class="form-control" name="Activo" formControlName="Activo">
+            <option *ngFor="let opt of OpcionesActivo" [ngValue]="opt.Id">
+                        ‌{{ opt.Nombre }}
+            <option>            
+          </select>
+			</div>
+		</div>
+		<!-- Botones -->
+		<div class="row justify-content-center">
+			<button type="button" class="btn btn-primary" (click)="Buscar()">
             <span class="fas fa-search"> </span> Consultar
         </button>
-		&nbsp;
-		<button type="button" class="btn btn-primary" (click)="Agregar()">
+			&nbsp;
+			<button type="button" class="btn btn-primary" (click)="Agregar()">
             <span class="fas fa-plus"> </span> 
             Agregar
         </button>
-	</div>
+		</div>
 </form>
 
 <!-- Tabla de resutados de busqueda y Paginador-->
@@ -100,29 +118,29 @@
 
 		<!--campo dni-->
 		<div class="form-group row">
-			<label class="col-form-label col-sm-2 col-sm-offset-2" for="Stock">
+			<label class="col-form-label col-sm-2 col-sm-offset-2" for="NumeroDocumento">
                 DNI <span class="text-danger">*</span>
             </label>
 			<div class="col-sm-6">
-				<input type="text" name="Stock" class="form-control" formControlName="Stock"
-        [ngClass]="{'is-invalid': (FormReg.controls.Stock.touched || submitted)  
-            && FormReg.controls.Stock.errors}" />
-				<span class="text-danger" *ngIf="(FormReg.controls.Stock.touched || submitted) 
-                        && FormReg.controls.Stock.errors?.required">
+				<input type="text" name="NumeroDocumento" class="form-control" formControlName="NumeroDocumento"
+        [ngClass]="{'is-invalid': (FormReg.controls.NumeroDocumento.touched || submitted)  
+            && FormReg.controls.NumeroDocumento.errors}" />
+				<span class="text-danger" *ngIf="(FormReg.controls.NumeroDocumento.touched || submitted) 
+                        && FormReg.controls.NumeroDocumento.errors?.required">
                     Dato requerido.
                 </span>
-				<span class="text-danger" *ngIf="(FormReg.controls.Stock.touched || submitted) 
-                        && FormReg.controls.Stock.errors?.pattern">
-                    Dato numérico, 1 a 7 dígitos.
+				<span class="text-danger" *ngIf="(FormReg.controls.NumeroDocumento.touched || submitted) 
+                        && FormReg.controls.NumeroDocumento.errors?.pattern">
+                    Dato numérico, 1 a 8 dígitos.
                 </span>
 			</div>
 		</div>
 
 		<!--campo activo-->
 		<div class="form-group row">
-			<label class="col-form-label col-sm-2 col-sm-offset-2" for="Activo">Activo</label>
+			<label class="col-form-label col-sm-2 col-sm-offset-2" for="Activo">Trabaja?</label>
 			<div class="col-sm-6">
-				<select name="Activo" disabled class="form-control" formControlName="Activo">
+				<select name="TieneTrabajo" disabled class="form-control" formControlName="TieneTrabajo">
                     <option *ngFor="let opt of OpcionesActivo" [ngValue]="opt.Id">
                         ‌{{ opt.Nombre }}
                     <option>

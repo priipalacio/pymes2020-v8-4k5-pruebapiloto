@@ -10,7 +10,7 @@ import { ClientesService } from "../../services/clientes.service";
   styleUrls: ["./clientes.component.css"]
 })
 export class ClientesComponent implements OnInit {
-  Titulo = "Articulos";
+  Titulo = "Clientes";
   TituloAccionABMC = {
     A: "(Agregar)",
     C: "(Consultar)",
@@ -48,6 +48,7 @@ export class ClientesComponent implements OnInit {
   ngOnInit() {
     this.FormFiltro = this.formBuilder.group({
       Nombre: [""],
+      NumeroDocumento: [null],
       TieneTrabajo: [null]
     });
     this.FormReg = this.formBuilder.group({
