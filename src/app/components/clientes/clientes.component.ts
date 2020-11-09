@@ -83,16 +83,10 @@ export class ClientesComponent implements OnInit {
   //Buscar segun los filtros, establecidos en FormReg
   Buscar() {
     this.SinBusquedasRealizadas = false;
-    this.clientesService
-      .get(
-        this.FormFiltro.value.Nombre,
-        this.FormFiltro.value.TieneTrabajo,
-        this.Pagina
-      )
-      .subscribe((res: any) => {
-        this.Lista = res.Lista;
-        this.RegistrosTotal = res.RegistrosTotal;
-      });
+    this.clientesService.get().subscribe((res: any) => {
+      this.Lista = res.Lista;
+      this.RegistrosTotal = res.RegistrosTotal;
+    });
   }
 
   // grabar tanto altas como modificaciones
@@ -106,18 +100,9 @@ export class ClientesComponent implements OnInit {
     //hacemos una copia de los datos del formulario, para modificar la fecha y luego enviarlo al servidor
     const itemCopy = { ...this.FormReg.value };
 
-    //convertir fecha de string dd/MM/yyyy a ISO para que la entienda webapi
-    var arrFecha = itemCopy.FechaAlta.substr(0, 10).split("/");
-    if (arrFecha.length == 3)
-      itemCopy.FechaAlta = new Date(
-        arrFecha[2],
-        arrFecha[1] - 1,
-        arrFecha[0]
-      ).toISOString();
-
     // agregar post
-    if (itemCopy.IdArticulo == 0 || itemCopy.IdArticulo == null) {
-      itemCopy.IdArticulo = 0;
+    if (itemCopy.IdCliente == 0 || itemCopy.IdCliente == null) {
+      itemCopy.IdCliente = 0;
       this.clientesService.post(itemCopy).subscribe((res: any) => {
         this.Volver();
         this.modalDialogService.Alert("Registro agregado correctamente.");
