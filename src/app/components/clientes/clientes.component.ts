@@ -59,7 +59,7 @@ export class ClientesComponent implements OnInit {
       ],
       NumeroDocumento: [
         null,
-        [Validators.required, Validators.pattern("[0-9]{1,7}")]
+        [Validators.required, Validators.pattern("[0-9]{1,8}")]
       ],
       TieneTrabajo: [true]
     });
